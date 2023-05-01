@@ -1,0 +1,8 @@
+pip
+pyserial
+requests
+cryptography
+pycryptodome
+pyscard
+pysimcard
+

@@ -1,4 +1,29 @@
 # SWu-IKEv2
+# Adaption
+
+- Added Dockerfile to use as a container
+- Installing all needed dependencies
+- Installing packages for smartcard reader usage (i.e. GemPC)
+
+
+Get major number of the smartcard reader:
+
+```
+lsusb
+
+ls /dev/bus/usb/$BUS/$DEVICE -las
+
+# example:    0 crw-rw-r-- 1 root root 189, 256 -> 189 is the major number
+```
+
+Testing IMS connectivity:
+
+```
+docker run -it --device-cgroup-rule='c $MAJOR_NUMBER:* rmw' $IMAGE_NAME -a ims -M $MCC -N $MNC -d epdg.epc.mnc$MNC.mcc$MCC.pub.3gppnetwork.org -m 0
+```
+
+**Important:** Make sure the SIM card has no PIN lock
+
 # IKEv2/IPSec SWu Client Dialer
 
 This is a SWu client emulator done in python3 that establishes an IKEv2/IPSec tunnel with an ePDG.
